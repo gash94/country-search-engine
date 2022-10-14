@@ -2,7 +2,6 @@
   "name": "goit-js-hw-10",
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
   "homepage": "https://goitacademy.github.io/goit-js-hw-10",
   "scripts": {
     "start": "parcel src/*.html",
