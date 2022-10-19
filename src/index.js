@@ -36,13 +36,6 @@ function inputHandler(e) {
       }
 
       renderMarkup(data);
-      const selectCountry = document.querySelectorAll('li');
-    selectCountry.forEach(button => {
-      button.addEventListener('click', event => {
-        const nameCountry = event.target;
-        createInfoMarkup(nameCountry);
-      });
-    });
     })
     .catch(err => {
       cleanMarkup(listCountry);
@@ -61,6 +54,18 @@ function renderMarkup(data) {
     const listMarkup = createListMarkup(data);
     listCountry.innerHTML = listMarkup;
 
+    const selectCountry = document.querySelectorAll('li');
+    selectCountry.forEach(button => {
+      button.addEventListener('click', event => {
+        const indexCountry = event.currentTarget.dataset.name;
+        console.log(indexCountry)
+        const newArr = data.filter(el => {
+          el.name.common == indexCountry;
+          console.log(el.name.common);
+        });
+        console.log(newArr);
+      });
+    });
   }
 }
 
@@ -83,7 +88,7 @@ function createListMarkup(data) {
   return data
     .map(
       ({ name, flags }) =>
-        `<li><img src="${flags.svg}" alt="${name.common}" width="40" height="30"/>${name.common}</li>`
+        `<li data-name="${name.common}"><img src="${flags.svg}" alt="${name.common}" width="40" height="30"/>${name.common}</li>`
     )
     .join('');
 }
