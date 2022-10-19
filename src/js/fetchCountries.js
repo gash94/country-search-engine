@@ -11,7 +11,6 @@ const fetchCountries = name => {
     `${COUNTRY_API_URL}${name}?fields=name,capital,population,flags,languages,region`
   )
     .then(response => {
-      console.log(response);
       if (response.status === 404) {
         return Promise.reject(
           new Error('Currently, restcountries page is not available')
