@@ -22,10 +22,9 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
       event.stopPropagation();
       node.classList.remove(`${prefix}animated`, animationName);
       resolve('Animation ended');
-
     }
 
-    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+    node.addEventListener('animationend', handleAnimationEnd, { once: true });
   });
 
 function cleanMarkup(ref) {
@@ -95,25 +94,23 @@ function renderMarkup(data) {
         //   'animate__animated',
         //   'animate__bounceOutLeft'
         // );
-       animateCSS('.my-element', 'bounceOutLeft');
-      setTimeout(() => {
-        cleanMarkup(listCountry);
-      }, 800); 
-      
-
+        animateCSS('.my-element', 'bounceOutLeft');
+        setTimeout(() => {
+          cleanMarkup(listCountry);
+        }, 900);
       });
     });
   }
 }
 
 function createInfoMarkup(data) {
-
   const singleCountry = data[0];
   const { capital, flags, languages, name, region, population } = singleCountry;
 
   return `
   <li class="animate__animated animate__fadeInLeft animate__delay-1s">
-        <h2>${name.official} - <a href="http://wikipedia.org/wiki/${
+        <h2>${name.official} - </h2>
+        <h2><a href="http://wikipedia.org/wiki/${
     name.common
   }" target="_blank" rel="noopener noreferrer">${name.common}</a></h2>
         <p><span>Capital:</span> ${capital}<img src="${flags.svg}" alt="${
