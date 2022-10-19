@@ -28,11 +28,21 @@ function inputHandler(e) {
       if (data.length > 10) {
         cleanMarkup(listCountry);
         cleanMarkup(infoCountry);
-        Notify.warning('Too many matches found. Please enter a more specific name');
-        
+        Notify.warning(
+          'Too many matches found. Please enter a more specific name'
+        );
+
         return;
       }
+
       renderMarkup(data);
+      const selectCountry = document.querySelectorAll('li');
+    selectCountry.forEach(button => {
+      button.addEventListener('click', event => {
+        const nameCountry = event.target;
+        createInfoMarkup(nameCountry);
+      });
+    });
     })
     .catch(err => {
       cleanMarkup(listCountry);
@@ -50,15 +60,19 @@ function renderMarkup(data) {
     cleanMarkup(infoCountry);
     const listMarkup = createListMarkup(data);
     listCountry.innerHTML = listMarkup;
+
   }
 }
 
 function createInfoMarkup(data) {
   return data.map(
-    ({ name, capital, population, flags, languages }) =>
+    ({ name, capital, population, flags, languages, region }) =>
       `<li>
-        <h2><img src="${flags.svg}" alt="${name.common}" width="50" height="40"/>${name.official} - ${name.common}</h2>
+        <h2><img src="${flags.svg}" alt="${
+        name.common
+      }" width="50" height="40"/>${name.official} - ${name.common}</h2>
         <p><span>Capital:</span> ${capital}</p>
+        <p><span>Region:</span> ${region}</p>
         <p><span>Population:</span> ${population}</p>
         <p><span>Languages:</span> ${Object.values(languages)}</p>
         </li>`
