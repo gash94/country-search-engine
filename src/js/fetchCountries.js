@@ -8,7 +8,7 @@ const fetchCountries = name => {
     svgSize: '56px',
   });
   return fetch(
-    `${COUNTRY_API_URL}${name}?fields=name,capital,population,flags,languages`
+    `${COUNTRY_API_URL}${name}?fields=name,capital,population,flags,languages,region`
   )
     .then(response => {
       console.log(response);
